@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 
 # Create your views here.
@@ -30,13 +30,33 @@ def seating(request):
 def tt_1(request):
     if request.method == "POST":
         number_of_faculty=int(request.POST['number_of_faculty'])
-        
-    return render(request,'tt_1.html',number_of_faculty)
+    return render(request,'tt_1.html')
+
 def tt_2(request):
-    a=[]
-    # for i in range(0,number_of_faculty):
-    #     a.append(0)
-    # re={
-    #     'res':a
-    # }
-    return render(request,'tt-2.html',re)
+    if request.method == "POST":
+        # Get the data from the submitted form
+        number_of_faculty = len(request.POST.getlist('faculty_name'))
+        faculty_names = request.POST.getlist('faculty_name')
+        class_names = request.POST.getlist('class_name[]')
+        subject_names = request.POST.getlist('subject_name[]')
+        subject_durations = request.POST.getlist('subject_duration[]')
+        practical_lectures = request.POST.getlist('practical_lectures[]')
+        practical_batches = request.POST.getlist('practical_batches[]')
+
+        # Your processing logic for the form data goes here...
+        # For example, you can pass the extracted data to the template for display.
+
+        context = {
+            'number_of_faculty': number_of_faculty,
+            'faculty_names': faculty_names,
+            'class_names': class_names,
+            'subject_names': subject_names,
+            'subject_durations': subject_durations,
+            'practical_lectures': practical_lectures,
+            'practical_batches': practical_batches,
+        }
+
+        # return render(request, context)
+
+    return render(request, 'tt-2.html')  # Render the initial form if it's not a POST request
+

@@ -11,7 +11,6 @@
 </head>
 <body>
     <h1>Load Distribution Input</h1>
-    {% for a in res %}
     <div class="container-fluid" id="form_container">
         <form action="" class="sform" method="POST">
             {% csrf_token %}
@@ -58,7 +57,6 @@
             <input type="submit" class="su" value="Submit">
         </form>
     </div>
-    {% endfor %}
 
 
     <script>
