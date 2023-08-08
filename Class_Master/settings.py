@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap5'
+    'bootstrap5',
+    'classmaster'
 ]
 
 MIDDLEWARE = [
@@ -113,6 +114,16 @@ USE_I18N = True
 
 USE_TZ = True
 
+# import os
+
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath('genetic_algorithm.py')))
+
+# # Add the path to your module
+# GENETIC_ALGORITHM_PATH = os.path.join(BASE_DIR, 'classmaster')
+
+# # Add the path to PYTHONPATH
+# import sys
+# sys.path.append(GENETIC_ALGORITHM_PATH)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
