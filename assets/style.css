@@ -1,0 +1,133 @@
+/* .diamod {
+    width: 100px;
+    height: 100px;
+    rotate:45deg;
+    position:relative;
+    top: 150%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    transform: scale(3.2);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(50, 205, 50,1.5);
+    background-image: url("banner.img");
+  } */
+body{
+    overflow-x: hidden;
+  }
+#suplg:hover{
+    color: rgb(84, 167, 255);
+    border-bottom: solid 2px lightblue;
+    transition: border-bottom-color 0.3s linear;
+}
+#bimg{
+    width: 80%;
+    height: 80%;
+    border-radius: 20px;
+    /* box-shadow: 0 0 100px rgb(50, 205, 50,1.5); */
+    
+}
+#service{
+    padding: 15px;
+    height: 50%;
+}
+.itemcard{
+    color: black;
+    margin: 5px;
+    text-align: center;
+    padding: 15px;
+    width: 95%;
+    height: 50%;
+    border-radius: 8px;
+    box-shadow: 0 0 25px rgb(17, 17, 17);
+    transition: 0.2s;
+
+}
+.itemcard:hover{
+    transform: scale(1.08);
+    background-color: #3ba424;
+}
+#about{
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+#aboutp{
+    border: solid 2px white;
+}
+#formbox{
+    background-color: whitesmoke;
+}
+.from-container{
+    width: 400px;
+    height: 480px;
+    background: rgb(50, 50, 50);
+    position: relative;
+    margin: 6% auto;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+.btnbox{
+    width: 330px;
+    position: relative;
+    box-shadow: 0 0 20px 9px whitesmoke;
+    margin: 45px auto;
+    border-radius: 30px;
+    
+}
+.lsbtn{
+    border: none;
+    outline: none;
+    padding: 10px 30px;
+    position: relative;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+#btn{
+    top: 0;
+    left: 0;
+    width: 170px;
+    position: absolute;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.358);
+    color: black;
+    border-radius: 30px;
+    transition: .5s;
+}
+.mainform{
+    top: 180px;
+    position:absolute;
+    width: 280px;
+    transition: -5s;
+}
+.input{
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-right: 0;
+    border-top: 0;
+    border-left: 0;
+    border-bottom: 1px solid white;
+    outline: 0;
+    background: transparent;
+    text-decoration: none;
+    color: white;
+}
+.submitbtn{
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    background: whitesmoke;
+    margin: 70px auto;
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+}
+#loginf{
+    left: 50px;
+}
+#signupf{
+    left: 450px;
+}

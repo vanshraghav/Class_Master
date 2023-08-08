@@ -1,0 +1,84 @@
+#form_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    padding: 10px;
+}
+.sform{
+    width: 50%;
+    /* height: 300px;  */
+    padding: 5px;
+    background: whitesmoke;
+    /* border: 2px solid black;
+    border-radius: 30px; */
+
+}
+.sinput{
+    overflow: hidden;
+    width: 100%;
+    padding: 8px 15px;
+    margin: 5px 0;
+    /* border-right: 0;
+    border-top: 0;
+    border-left: 0; */
+    border: 1px solid black;
+    border-radius: 20px;
+    outline: 0;
+    background: transparent;
+    text-decoration: none;
+    color: black;
+    font-size: 1.2em;
+}
+.submitbtn{
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    background: whitesmoke;
+    margin: 10px auto;
+    border: 2px solid black;
+    border-radius: 30px;
+    font-size: 1.2em;
+}
+.submitbtn:hover{
+    background-color:#24a0ed ;
+    color: white;
+    transition: linear 0.3s;
+}
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    border-radius: 30px;
+}
+.srn{
+    width: 10%;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+
+
+

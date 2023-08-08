@@ -1,0 +1,117 @@
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Load Distribution Input</title>
+    <link rel="stylesheet" href="{%static 'seating.css' %}">
+</head>
+<body>
+    <h1>Load Distribution Input</h1>
+    {% for a in res %}
+    <div class="container-fluid" id="form_container">
+        <form action="" class="sform" method="POST">
+            {% csrf_token %}
+            <div id="faculty_fields">
+                <!-- Default input fields for the first faculty -->
+                <div class="faculty">
+                    <label for="faculty_name">Faculty Name:</label>
+                    <input class="sinput" type="text" id="faculty_name" name="faculty_name" required>
+    
+                    <!-- Input fields for multiple classes -->
+                    <div id="class_fields">
+                        <div class="class">
+                            <label for="class_name_1">Class/Grade:</label>
+                            <input class="sinput" type="text" id="class_name_1" name="class_name[]" required>
+                        </div>
+                    </div>
+    
+                    <!-- Input fields for multiple subjects -->
+                    <div id="subject_fields">
+                        <div class="subject">
+                            <label for="subject_name_1">Subject Name:</label>
+                            <input class="sinput" type="text" id="subject_name_1" name="subject_name[]" required><br>
+                            <label for="subject_duration_1">Subject Duration per week:</label>
+                            <input class="sinput" type="text" id="subject_duration_1" name="subject_duration[]" required>
+                        </div>
+                    </div>
+    
+                    <!-- Input fields for multiple practical lectures -->
+                    <div id="practical_fields">
+                        <div class="practical">
+                            <label for="practical_lectures_1">Practical Lectures:</label>
+                            <input class="sinput" type="number" id="practical_lectures_1" name="practical_lectures[]" required><br>
+                            <label for="practical_batches">Number of Practical Batches:</label>
+                            <input class="sinput" type="text" id="practical_batches" name="practical_batches[]" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <button type="button" onclick="addClass()">Add Class</button>
+            <button type="button" onclick="addSubject()">Add Subject</button>
+            <button type="button" onclick="addPractical()">Add Practical Lectures</button>
+    
+            <input type="submit" class="su" value="Submit">
+        </form>
+    </div>
+    {% endfor %}
+
+
+    <script>
+        let classCount = 1;
+        let subjectCount = 1;
+        let practicalCount = 1;
+
+        function addClass() {
+            classCount++;
+
+            const classFields = document.getElementById('class_fields');
+            const newClass = document.createElement('div');
+            newClass.className = 'class';
+
+            newClass.innerHTML = `
+                <label for="class_name_${classCount}">Class/Grade:</label>
+                <input type="text" id="class_name_${classCount}" name="class_name[]" required>
+            `;
+
+            classFields.appendChild(newClass);
+        }
+
+        function addSubject() {
+            subjectCount++;
+
+            const subjectFields = document.getElementById('subject_fields');
+            const newSubject = document.createElement('div');
+            newSubject.className = 'subject';
+
+            newSubject.innerHTML = `
+                <label for="subject_name_${subjectCount}">Subject Name:</label>
+                <input type="text" id="subject_name_${subjectCount}" name="subject_name[]" required>
+            `;
+
+            subjectFields.appendChild(newSubject);
+        }
+
+        function addPractical() {
+            practicalCount++;
+
+            const practicalFields = document.getElementById('practical_fields');
+            const newPractical = document.createElement('div');
+            newPractical.className = 'practical';
+
+            newPractical.innerHTML = `
+                <label for="practical_lectures_${practicalCount}">Practical Lectures:</label>
+                <input type="number" id="practical_lectures_${practicalCount}" name="practical_lectures[]" required>
+                <label for="practical_batches">Number of Practical Batches:</label>
+                <input type="number" id="practical_batches" name="practical_batches[]" required>
+            `;
+
+            practicalFields.appendChild(newPractical);
+        }
+    </script>
+</body>
+</html>

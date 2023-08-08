@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="logo-1.png" type="image/png">
+    <title>ClassMaster</title>
+</head>
+<body>
+    <!-- header -->
+        <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-bottom-dark"
+            data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><b>ClassMaster</b></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html"><b
+                                    class="navbtn">Home</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="project.html"><b
+                                    class="navbtn">Dashbord</b></a>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <li class="nav-item" >
+                            <a class="nav-link active" aria-current="page" href="landing_page.html" id="sup">Sign up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="landing_page.html" id="lg">login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- main login signup page -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <img src="banner.img" alt="" class="img-fluid">
+            </div>
+            <div class="col-sm-6" id="formbox">
+                <div class="from-container">
+                    <div class="btnbox">
+                        <div id="btn"></div>
+                        <button type="button"  onclick="teacherlogin()" class="lsbtn">Teacher login</button>
+                        <button type="button" onclick="studlogin()" class="lsbtn">Student login</button>
+                       
+                    </div>
+                    <form class="mainform" id="loginf">
+                        <input type="text" name="name" class="input" id="name" placeholder="Enter Teacher Id" required>
+                        <input type="password" name="password" class="input" id="password" placeholder="Enter password" required>
+                        <button type="submit" class="submitbtn"> Login</button>
+                    </form>
+                    <form  class="mainform" id="signupf">
+                        <input type="text" name="name" class="input" id="name" placeholder="Enter Student Id" required>
+                        <input type="password" name="password" class="input" id="password" placeholder="Enter password" required>
+                        <button type="submit" class="submitbtn"> Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <!-- <div class="container-fluid" style="background-color: #1a1a1a;">
+        <div class="modal-footer" style="background-color:#1a1a1a;color:white;">
+            <div class="container-fluid" id="mfoot" style="background-color: #1a1a1a;">
+
+                <div class="row justify-content-center text-center" id="foot">
+                    <div class="col">
+                        <div class="container-fluid">
+                            <span>
+                                <h3><i>Sailing the Code Seas: A Web Developer's Adventure</i></h3>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="foot">
+                    <div class="col-sm-12 justify-content-center text-center">
+                        <i>
+                            <a target="_blank" href="https://github.com/samhk90"><img src="github.png" class="icon"></a>
+                        </i>
+                        <i>
+                            <a target="_blank" href="https://www.instagram.com/md_samii90/"><img src="instagram.png"
+                                    class="icon"></a>
+                        </i>
+                        <i>
+                            <a target="_blank" href="https://www.linkedin.com/in/samee-shaikh-3a3406220/"><img
+                                    src="linkedin.png" class="icon"></a>
+                        </i>
+                    </div>
+                </div>
+                <div class="row" id="foot">
+                    <div class="col-sm-12 justify-content-center text-center">
+                        <div class="container-fluid">
+                            <span>
+                                <h4><i>Follow Me On</i></h4>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="foot">
+                    <div class="col-sm-12 justify-content-center text-center foot">
+                        <i>
+                            <img src="cc.png" class="icon"> Developed and Maintained by Samee Shaikh
+                        </i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <script>
+        let l=document.getElementById("loginf")
+        let s=document.getElementById("signupf")
+        let t=document.getElementById("btn")
+        function studlogin(){
+            l.style.left="-400px";
+            s.style.left="50px";
+            t.style.left="160px";
+        }
+        function teacherlogin(){
+            l.style.left="50px";
+            s.style.left="450px";
+            t.style.left="0px";
+        }
+        x=document.getElementById("sup")
+        function signupt(){
+            l.style.left="-400px";
+            s.style.left="50px";
+            t.style.left="110px";
+        }
+    </script>
+
+
+</body>
+</html>

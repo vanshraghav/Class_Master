@@ -1,0 +1,65 @@
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Load Distribution Input</title>
+    <link rel="stylesheet" href="{% static 'seating.css' %}">
+</head>
+<body>
+    <h1>Load Distribution Input</h1>
+    <div class="container-fluid" id="form_container">
+        <form action="tt-2" method="POST">
+            {% csrf_token %}
+            <div class="nofaculty">
+                <label for="number_of_faculty">Enter number of faculty</label>
+                <input type="text" class="sinput"  name="number_of_faculty" id="number_of_faculty" required>
+            </div>
+            <div class="classes">
+                <label for="number_of_classes">Enter number of classes</label>
+                <input type="text"class="sinput"   name="number_of_classes" id="number_of_classes" required><br>
+                <div id="class_names_input">
+                    <!-- Class name inputs will be dynamically added here -->
+                </div>
+            </div>
+            <div class="slot">
+                <label for="number_of_slot">Enter number of Slot per Day</label>
+                <input type="text" name="number_of_slot" id="number_of_slot" required><br>
+            </div>
+    
+            <input type="submit" class="submitbtn" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        const numberInput = document.getElementById("number_of_classes");
+        const classNamesInput = document.getElementById("class_names_input");
+
+        numberInput.addEventListener("input", () => {
+            const numberOfClasses = parseInt(numberInput.value);
+            classNamesInput.innerHTML = ""; // Clear the previous inputs
+
+            if (!isNaN(numberOfClasses) && numberOfClasses > 0) {
+                for (let i = 1; i <= numberOfClasses; i++) {
+                    const label = document.createElement("label");
+                    label.textContent = `Enter name of Class ${i}`;
+                    classNamesInput.appendChild(label);
+
+                    const input = document.createElement("input");
+                    input.type = "text";
+                    input.class = "sinput";
+                    input.name = `name_of_class_${i}`;
+                    input.required = true;
+                    classNamesInput.appendChild(input);
+
+                    classNamesInput.appendChild(document.createElement("br"));
+                }
+            }
+        });
+    </script>
+</body>
+</html>
