@@ -1,8 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .genetic_algorithm import initialize_population, fitness_function, selection, crossover, mutation, genetic_algorithm
+from genetic_algorithm import initialize_population, fitness_function, selection, crossover, mutation, genetic_algorithm
 from .models import Faculty, Subject  # Import your models
 
 # Create your views here.
