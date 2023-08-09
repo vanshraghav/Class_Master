@@ -1,20 +1,25 @@
 from django.db import models
 
-# Create your models here.
 # models.py
 
 from django.db import models
 
 class Faculty(models.Model):
     name = models.CharField(max_length=100)
-    year = models.CharField(max_length=10)
+    # Other fields as needed
+
+class Class(models.Model):
+    name = models.CharField(max_length=100)
+    # Other fields as needed
 
 class Subject(models.Model):
     name = models.CharField(max_length=100)
-    is_practical = models.BooleanField()
+    duration = models.IntegerField()
+    practical_lectures = models.BooleanField()
+    practical_batches = models.IntegerField()
 
-class Timeslot(models.Model):
-    day = models.CharField(max_length=20)
-    time = models.CharField(max_length=20)
-class Meta:
-        app_label = 'classmaster'
+class Timetable(models.Model):
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
+    classes = models.ForeignKey(Class, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    # Other fields like day, time, etc.

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from genetic_algorithm import initialize_population, fitness_function, selection, crossover, mutation, genetic_algorithm
+#from genetic import initialize_population, fitness_function, selection, crossover, mutation, genetic_algorithm
 from .models import Faculty, Subject  # Import your models
 
 # Create your views here.
@@ -29,71 +29,79 @@ def seating(request):
             'noofclass':no_of_class
         }
     return render(request,'seating.html',res)
-def tt_1(request):
-    if request.method == "POST":
-        number_of_faculty=int(request.POST['number_of_faculty'])
-    return render(request,'tt_1.html')
+# def tt_1(request):
+#     if request.method == "POST":
+#         number_of_faculty=int(request.POST['number_of_faculty'])
+#     return render(request,'tt_1.html')
+# from django.shortcuts import render
+# from .models import Faculty, Subject, Room  # Import your models
 
-def tt_2(request):
-    if request.method == "POST":
-        # Get the data from the submitted form
-        number_of_faculty = int(request.POST['number_of_faculty'])
-        faculty_names = request.POST.getlist('faculty_name')
-        class_names = request.POST.getlist('class_name[]')
-        subject_names = request.POST.getlist('subject_name[]')
-        subject_durations = request.POST.getlist('subject_duration[]')
-        practical_lectures = request.POST.getlist('practical_lectures[]')
-        practical_batches = request.POST.getlist('practical_batches[]')
+# def simple_timetable_optimization(faculties, subjects, rooms, days, time_slots):
+#     timetable = {}
 
-        # Create Faculty, Subject instances based on form data
-        faculties = []
-        for i in range(number_of_faculty):
-            subjects = []
-            if practical_lectures[i] == 'yes':
-                subjects.append(Subject(name='Practical', is_practical=True))
-            for j in range(len(subject_names[i])):
-                subjects.append(Subject(name=subject_names[i][j], is_practical=False))
-            faculties.append(Faculty(name=faculty_names[i], subjects=subjects, year=class_names[i]))
+#     # Iterate through each day and time slot
+#     for day in days:
+#         for time_slot in time_slots:
+#             for faculty in faculties:
+#                 for subject in subjects:
+#                     if subject in faculty.subjects and subject not in timetable.values():
+#                         # Check if the faculty is available and the room is available
+#                         if faculty.is_available(day, time_slot) and rooms.is_available(day, time_slot):
+#                             timetable[(day, time_slot)] = subject
+#                             break  # Move to the next time slot
 
-        # Prepare data for Genetic Algorithm
-        days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']  # List of available days
-        slot_availability = {
-            '08:00 AM': 1,
-            '09:00 AM': 1,
-            '10:00 AM': 1,
-            # ... define other time slots and their initial availability
-        }
+#     return timetable
 
-        # Call the Genetic Algorithm to generate the timetable
-        best_timetable = genetic_algorithm(faculties, days, slot_availability)
+# def tt_2(request):
+#     faculties = Faculty.objects.all()
+#     subjects = Subject.objects.all()
+#     rooms = Room.objects.all()  # Replace with your Room model
+    
+#     days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+#     time_slots = ['09:00 AM - 10:00 AM', '10:00 AM - 11:00 AM', ...]  # Define your time slots
+    
+#     timetable = simple_timetable_optimization(faculties, subjects, rooms, days, time_slots)
+    
+#     context = {
+#         'timetable': timetable,
+#     }
+    
+#     return render(request, 'timetable.html', context)
 
-        # Prepare data for rendering
-        timetable_data = []
-        for faculty_name, faculty_slots in best_timetable.items():
-            faculty = Faculty.objects.get(name=faculty_name)  # Assuming you have a Faculty model
-            slots_assigned = []
-            for subject, slot in faculty_slots:
-                slots_assigned.append({
-                    'subject': subject,
-                    'slot': slot,
-                })
-                # Adjust slot availability for practicals
-                if subject.is_practical:
-                    slot_duration = 2
-                else:
-                    slot_duration = 1
-                for i in range(slot_duration):
-                    slot_availability[slot + i] -= slot_duration
+# views.py
 
-            timetable_data.append({
-                'faculty': faculty,
-                'slots_assigned': slots_assigned,
-            })
+# views.py
 
-        context = {
-            'timetable_data': timetable_data,
-        }
+from django.shortcuts import render, redirect
+from .form import SubjectForm
+from .models import Subject, Timetable
 
-        return render(request, 'timetable_result.html', context)
+def create_timetable(request):
+    if request.method == 'POST':
+        subject_form = SubjectForm(request.POST)
+        if subject_form.is_valid():
+            subject = subject_form.save(commit=False)  # Create an object but don't save yet
+            # Check your conditions here using if statements
+            if subject.duration > 0 and subject.practical_lectures:
+                # Conditions met, save the subject to the timetable
+                subject.save()
+                # You might also want to associate the subject with a faculty and class
+                timetable_entry = Timetable(subject=subject, faculty=request.user.faculty, classes=request.user.classes)
+                timetable_entry.save()
+                return redirect('view_timetable')  # Redirect to view timetable
+            else:
+                # Conditions not met, display an error message or handle appropriately
+                error_message = "Conditions for adding subject not met."
+                return render(request, 'create_timetable.html', {'subject_form': subject_form, 'error_message': error_message})
+    else:
+        subject_form = SubjectForm()
+    return render(request, 'create_timetable.html', {'subject_form': subject_form})
 
-    return render(request, 'tt-2.html')  # Render the initial form if it's not a POST request
+
+def view_timetable(request):
+    # Fetch timetable data and pass it to the template
+    timetable_data = Timetable.objects.all()
+    context = {
+        'timetable_data': timetable_data,
+    }
+    return render(request, 'view_timetable.html', context)

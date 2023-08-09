@@ -1,0 +1,22 @@
+<!-- view_timetable.html -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Faculty</th>
+            <th>Class</th>
+            <th>Subject</th>
+            <!-- Other columns -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in timetable_data %}
+        <tr>
+            <td>{{ entry.faculty }}</td>
+            <td>{{ entry.class }}</td>
+            <td>{{ entry.subject }}</td>
+            <!-- Other cells -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
